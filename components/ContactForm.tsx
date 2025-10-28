@@ -6,12 +6,12 @@ export default function ContactForm() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitted(true);
     setFormData({ name: '', email: '', phone: '', message: '' });
@@ -43,6 +43,8 @@ export default function ContactForm() {
         type="text"
         id="name"
         name="name"
+        value={formData.name}
+        onChange={handleChange}
         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition"
         placeholder="Your full name"
       />
@@ -56,6 +58,8 @@ export default function ContactForm() {
         type="email"
         id="email"
         name="email"
+        value={formData.email}
+        onChange={handleChange}
         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition"
         placeholder="your.email@example.com"
       />
@@ -69,6 +73,8 @@ export default function ContactForm() {
         type="tel"
         id="phone"
         name="phone"
+        value={formData.phone}
+        onChange={handleChange}
         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition"
         placeholder="(123) 456-7890"
       />
@@ -81,6 +87,8 @@ export default function ContactForm() {
       <textarea
         id="message"
         name="message"
+        value={formData.message}
+        onChange={handleChange}
         rows={5}
         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition resize-none"
         placeholder="Tell us how we can help you..."
